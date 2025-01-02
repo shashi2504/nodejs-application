@@ -42,3 +42,34 @@ jobs:
         with:
           name: mocha-test-report
           path: test-results.xml
+
+  code-coverage:
+    name: Code Coverage
+    strategy:
+      matrix:
+        nodejs-versions: [18, 19, 20]
+        operating-systems: [ubuntu-latest, macos-latest]
+        exclude:
+          - nodejs-versions: 18
+            operating-systems: macos-latest
+    runs-on: ${{ matrix.operating-systems }}
+    steps:
+      - name: Checkout Repositroy
+        uses: actions/checkout@v4
+
+      - name: Setup the NodeJS Versions - ${{ matrix.nodejs-versions }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.nodejs-versions }}
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Unit Testing
+        run: npm run coverage
+
+      - name : Storing the Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: nyc-istanbul-report
+          path: nyc-results.xml
