@@ -14,15 +14,22 @@ on:
 jobs:
   unit-testing:
     name: Unit Testing
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        nodejs-versions: [18, 19, 20]
+        operating-systems: [ubuntu-latest, macos-latest]
+        exclude:
+          - nodejs-versions: 18
+            operating-systems: macos-latest
+    runs-on: ${{ matrix.operating-systems }}
     steps:
       - name: Checkout Repositroy
         uses: actions/checkout@v4
 
-      - name: Setup the NodeJS Env
+      - name: Setup the NodeJS Versions - ${{ matrix.nodejs-versions }}
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ matrix.nodejs-versions }}
 
       - name: Install Dependencies
         run: npm install
