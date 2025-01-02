@@ -58,7 +58,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Unit Testing
+      - name: Code Coverage
         continue-on-error: true
         run: npm run coverage
 
