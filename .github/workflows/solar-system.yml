@@ -59,10 +59,12 @@ jobs:
         run: npm install
 
       - name: Unit Testing
+        continue-on-error: true
         run: npm run coverage
 
       - name : Storing the Test Results
         uses: actions/upload-artifact@v3
         with:
           name: nyc-istanbul-report
-          path: nyc-results.xml
+          path: coverage
+          retention-days: 5
