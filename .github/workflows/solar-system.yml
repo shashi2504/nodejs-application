@@ -87,6 +87,8 @@ jobs:
   docker:
     needs: [unit-testing, code-coverage]
     name: Containerization
+    permissions:
+      packages: write
     runs-on: ubuntu-latest
 
     steps:
