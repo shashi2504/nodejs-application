@@ -160,3 +160,25 @@ jobs:
           tags: | 
             ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
             ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}
+
+  dev-deploy:
+    name: Deploying Application to the Development Env Production
+    needs: [docker]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v4
+
+      - name: Setting up the kubectl env
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'v1.26.0'
+        id: install
+    
+      - name: Fetch K8s Cluster Details
+        run: |
+          kubectl version --short
+          echo ----------------------------
+          kubectl get nodes
+          
+          
