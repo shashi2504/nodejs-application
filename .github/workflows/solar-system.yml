@@ -175,7 +175,7 @@ jobs:
           version: 'v1.26.0'
         id: install
     
-      - name: Fetch K8s Cluster Details
+      - name: Fetch K8s Cluster Details #checking details
         run: |
           kubectl version --short
           echo ----------------------------
