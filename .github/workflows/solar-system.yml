@@ -201,7 +201,7 @@ jobs:
           NAMESPACE: ${{ vars.NAMESPACE }}
           REPLICAS: ${{ vars.REPLICAS }}
           IMAGE: ${{ vars.DOCKER_USERNAME }}/solar-system:${{ github.sha }}
-          INGRESS_IP: ${{ env.INGRESS_IP }}
+          INGRESS_IP: ${{ env.INGRESS_IP }}   # used ingress ip
 
       - name: Check files
         run: |
