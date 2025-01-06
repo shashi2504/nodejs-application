@@ -224,4 +224,4 @@ jobs:
 
       - name: Deploying the application to Dev Env
         run: |
-          kubectl apply -f kubernetes/development/*.yaml
+          kubectl apply -f kubernetes/development
