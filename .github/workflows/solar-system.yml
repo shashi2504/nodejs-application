@@ -175,10 +175,6 @@ jobs:
           version: 'v1.26.0'
         id: install
 
-      - name: Create Development Namespace
-        run: |
-          kubectl create namespace development
-
       - name: Setup kubeconfig
         uses: azure/k8s-set-context@v4
         with:
@@ -190,6 +186,10 @@ jobs:
           kubectl version --short
           echo ----------------------------
           kubectl get nodes
+
+      - name: Create Development Namespace
+        run: |
+          kubectl get namespace development || kubectl create namespace development
 
       - name: Storing Nginx INgress Controller Hostname as a GitHub Env Variable
         run: |
