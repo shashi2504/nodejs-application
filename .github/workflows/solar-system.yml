@@ -248,7 +248,7 @@ jobs:
         continue-on-error: true
 
   prod-deploy:
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'  # updated
     name: Deploying Application to the Production Env
     needs: docker
     environment: 
