@@ -175,6 +175,10 @@ jobs:
           version: 'v1.26.0'
         id: install
 
+      - name: Create Development Namespace
+        run: |
+          kubectl get namespace development || kubectl create namespace development
+
       - name: Setup kubeconfig
         uses: azure/k8s-set-context@v4
         with:
