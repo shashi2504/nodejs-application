@@ -187,10 +187,6 @@ jobs:
           echo ----------------------------
           kubectl get nodes
 
-      - name: Create Development Namespace
-        run: |
-          kubectl get namespace development || kubectl create namespace development
-
       - name: Storing Nginx INgress Controller Hostname as a GitHub Env Variable
         run: |
           echo "INGRESS_IP=$(kubectl -n ingress-nginx get svc ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" >> $GITHUB_ENV
