@@ -162,6 +162,7 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}
 
   dev-deploy:
+    if: contains(github.ref, 'feature/')
     name: Deploying Application to the Development Env Production
     needs: [docker]
     environment: 
@@ -232,6 +233,7 @@ jobs:
           echo "APP_INGRESS_HOST=$(kubectl get ingress -n ${{ vars.NAMESPACE }} -o jsonpath="{.items[0].spec.tls[0].hosts[0]}")" >> "$GITHUB_OUTPUT"
 
   dev-integration-testing:
+    if: contains(github.ref, 'feature/')
     name: Dev Integration testing
     needs: dev-deploy
     runs-on: ubuntu-latest
@@ -246,8 +248,9 @@ jobs:
         continue-on-error: true
 
   prod-deploy:
+    if: github.ref == 'refs/heads/main'
     name: Deploying Application to the Production Env
-    needs: [dev-integration-testing]
+    needs: docker
     environment: 
       name: production
       url: https://${{ steps.set-ingress-host-address.outputs.APP_INGRESS_HOST }}
@@ -316,6 +319,7 @@ jobs:
           echo "APP_INGRESS_HOST=$(kubectl get ingress -n ${{ vars.NAMESPACE }} -o jsonpath="{.items[0].spec.tls[0].hosts[0]}")" >> "$GITHUB_OUTPUT"
 
   production-integration-testing:
+    if: github.ref == 'refs/heads/main'
     name: Production Integration testing
     needs: prod-deploy
     runs-on: ubuntu-latest
