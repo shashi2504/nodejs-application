@@ -177,7 +177,7 @@ jobs:
 
       - name: Create Development Namespace
         run: |
-          kubectl get namespace development
+          kubectl create namespace development
 
       - name: Setup kubeconfig
         uses: azure/k8s-set-context@v4
