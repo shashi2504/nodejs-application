@@ -181,7 +181,7 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
     
-      - name: Fetch K8s Cluster Details   # checking details
+      - name: Fetch K8s Cluster Details
         run: |
           kubectl version --short
           echo ----------------------------
