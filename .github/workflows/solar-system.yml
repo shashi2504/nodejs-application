@@ -165,7 +165,8 @@ jobs:
     if: contains(github.ref, 'feature/')
     name: Deploying Application to the Development Env Production
     needs: docker
-    uses: .github/workflows/reuse-deployments.yml
+    uses: .github/workflows/workflows-reusable.yml
+
 
   dev-integration-testing:
     if: contains(github.ref, 'feature/')
@@ -186,7 +187,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     name: Deploying Application to the Production Env
     needs: docker
-    uses: .github/workflows/reuse-deployments.yml
+    uses: .github/workflows/workflows-reusable.yml
 
   production-integration-testing:
     if: github.ref == 'refs/heads/master'
