@@ -3,7 +3,7 @@ on:
     workflow_call:
 
 jobs:
-    reuse-dev-deploy:
+    reuse-deploy:
         environment: 
           name: development
           url: https://${{ steps.set-ingress-host-address.outputs.APP_INGRESS_HOST }}
@@ -70,6 +70,7 @@ jobs:
             id: set-ingress-host-address
             run: |
               echo "APP_INGRESS_HOST=$(kubectl get ingress -n ${{ vars.NAMESPACE }} -o jsonpath="{.items[0].spec.tls[0].hosts[0]}")" >> "$GITHUB_OUTPUT"
+    
     reuse-prod-deploy:
       environment: 
         name: production
