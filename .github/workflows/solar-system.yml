@@ -190,6 +190,9 @@ jobs:
     name: Deploying Application to the Production Env
     needs: docker
     uses: ./.github/workflows/reuse-deployments.yml
+    secrets:
+      k8s-kubeconfig: ${{ secrets.KUBECONFIG }}
+      mongodb-password: ${{ secrets.MONGO_PASSWORD }}
 
   production-integration-testing:
     if: github.ref == 'refs/heads/master'
