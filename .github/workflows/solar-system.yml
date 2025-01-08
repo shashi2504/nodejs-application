@@ -172,7 +172,7 @@ jobs:
     with:
       mongo-uri: ${{ vars.MONGO_URI }}
       environment: development 
-      k8s-manifest-direc: kubernetes/development
+      k8s-manifest-direc: kubernetes/development/
 
   dev-integration-testing:
     if: contains(github.ref, 'feature/')
@@ -200,7 +200,7 @@ jobs:
     with:
       mongo-uri: ${{ vars.MONGO_URI }}
       environment: production
-      k8s-manifest-direc: kubernetes/production
+      k8s-manifest-direc: kubernetes/production/
 
   production-integration-testing:
     if: github.ref == 'refs/heads/master'
