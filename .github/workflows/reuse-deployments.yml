@@ -6,12 +6,31 @@ on:
         k8s-kubeconfig:
           required: true
         mongodb-password:
-          required: true 
+          required: true
+      inputs:
+        mongo-uri:
+          required: true
+          type: string
+        kubectl-version:
+          description: Provide the required kubectl version
+          default: v1.26.0
+          required: true
+          type: string
+        k8s-manifest-direc:
+          description: Direc containing the k8s manifest files
+          default: kubernetes
+          required: true
+          type: string
+        environment:
+          description: Provide which environment to deploy
+          default: dev
+          required: true
+          type: string          
 
 jobs:
   reuse-deploy:
     environment: 
-      name: development
+      name: ${{ inputs.environment }}
       url: https://${{ steps.set-ingress-host-address.outputs.APP_INGRESS_HOST }}
     outputs:
       APP_INGRESS_URL: ${{ steps.set-ingress-host-address.outputs.APP_INGRESS_HOST }}
@@ -23,8 +42,7 @@ jobs:
         - name: Setting up the kubectl env
           uses: azure/setup-kubectl@v4
           with:
-            version: 'v1.26.0'
-          id: install
+            version: '${{ inputs.kubectl-version }}'
 
         - name: Setup kubeconfig
           uses: azure/k8s-set-context@v4
@@ -38,7 +56,7 @@ jobs:
             echo ----------------------------
             kubectl get nodes
 
-        - name: Storing Nginx INgress Controller Hostname as a GitHub Env Variable
+        - name: Storing Nginx Ingress Controller Hostname as a GitHub Env Variable
           run: |
             echo "INGRESS_IP=$(kubectl -n ingress-nginx get svc ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" >> $GITHUB_ENV
           
@@ -47,7 +65,7 @@ jobs:
           with:
             tokenPrefix: '_{_'
             tokenSuffix: '_}_'
-            files: '["kubernetes/development/*.yaml"]'
+            files: '["${{ inputs.k8s-manifest-direc }}*.yaml"]'
           env:
             NAMESPACE: ${{ vars.NAMESPACE }}
             REPLICAS: ${{ vars.REPLICAS }}
@@ -56,12 +74,12 @@ jobs:
 
         - name: Check files
           run: |
-            cat kubernetes/development/*.yaml    
+            cat ${{ inputs.k8s-manifest-direc }}*.yaml    
 
         - name: Create MongoDB Secret
           run: |
             kubectl -n ${{ vars.NAMESPACE }} create secret generic mongo-db-creds \
-            --from-literal=MONGO_URI=${{ env.MONGO_URI }} \
+            --from-literal=MONGO_URI=${{ inputs.mongo-uri }} \
             --from-literal=MONGO_USERNAME=${{ vars.MONGO_USERNAME }} \
             --from-literal=MONGO_PASSWORD=${{ secrets.mongodb-password }} \
             --save-config \
@@ -70,7 +88,7 @@ jobs:
 
         - name: Deploying the application to Dev Env
           run: |
-            kubectl apply -f kubernetes/development
+            kubectl apply -f ${{ inputs.k8s-manifest-direc }}
 
         - name: Application ingress host
           id: set-ingress-host-address
