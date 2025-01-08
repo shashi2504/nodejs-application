@@ -35,6 +35,10 @@ jobs:
       - name: Checkout Repositroy
         uses: actions/checkout@v4
 
+      - name: Debug
+        run: |
+          ls -R .github/workflows
+
       - name: Setup the NodeJS Versions - ${{ matrix.nodejs-versions }}
         uses: actions/setup-node@v4
         with:
@@ -169,10 +173,6 @@ jobs:
     steps:
       - name: Checkout the Repository
         uses: actions/checkout@v4
-
-      - name: Debug
-        run: |
-          ls -R .github/workflows
 
       - name: Setting up the kubectl env
         uses: azure/setup-kubectl@v4
