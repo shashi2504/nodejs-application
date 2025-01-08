@@ -25,7 +25,11 @@ on:
           description: Provide which environment to deploy
           default: dev
           required: true
-          type: string          
+          type: string
+          
+      outputs:
+        application-url:
+          value: ${{ jobs.reuse-deploy.outputs.APP_INGRESS_URL }}
 
 jobs:
   reuse-deploy:
