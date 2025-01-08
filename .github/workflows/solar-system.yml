@@ -165,7 +165,7 @@ jobs:
     if: contains(github.ref, 'feature/')
     name: Deploying Application to the Development Env Production
     needs: docker
-    uses: .github/workflows/reusable-deployment.yml
+    uses: .github/workflows/reuse-deployments.yml
 
   dev-integration-testing:
     if: contains(github.ref, 'feature/')
