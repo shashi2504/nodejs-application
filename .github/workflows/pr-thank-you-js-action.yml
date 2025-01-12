@@ -14,4 +14,4 @@ jobs:
         uses: shashi2504/Javascript-Action@1.0.0-alpha
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          giphy-apt-key: ${{ secrets.GIPHY_API_KEY }}
+          giphy-api-key: ${{ secrets.GIPHY_API_KEY }}
