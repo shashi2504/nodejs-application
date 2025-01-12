@@ -1,0 +1,17 @@
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  pr-js-action:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Post Js Action PR Comment
+        uses: shashi2504/Javascript-Action@1.0.0-alpha
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-api-key: ${{ secrets.GITHUB_API_KEY }}
