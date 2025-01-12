@@ -1,0 +1,17 @@
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  pr-js-action:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Using the Custom Js action for PR comments
+        uses: shashi2504/Javascript-Action@1.0.1-alpha
+        with:
+          git-token: ${{ secrets.GITHUB_TOKEN }}
+          giphy-api-key: ${{ secrets.GIPHY_API_KEY }}
