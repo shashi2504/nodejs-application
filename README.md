@@ -1,5 +1,5 @@
 # Solar System NodeJS Application
-
+[![NodeJs Application Workflow](https://github.com/shashi2504/nodejs-application/actions/workflows/solar-system.yml/badge.svg)](https://github.com/shashi2504/nodejs-application/actions/workflows/solar-system.yml) 
 A simple HTML+MongoDB+NodeJS project to display Solar System and it's planets.
 
 ---
