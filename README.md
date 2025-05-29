@@ -49,10 +49,10 @@ A full-stack web application that provides an interactive exploration of our sol
 ### Local Development
 
 1. **Clone the repository**
-   \`\`\`bash
+   \`
    git clone <repository-url>
    cd solar-system
-   \`\`\`
+   `\
 
 2. **Install dependencies**
    \`\`\`bash
