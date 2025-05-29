@@ -10,9 +10,10 @@ A full-stack web application that provides an interactive exploration of our sol
 
 ## 📸 Project Outcome
 
-![Solar System Explorer Screenshot](/placeholder.svg?height=600&width=1200&query=Solar%20System%20Explorer%20web%20application%20showing%20interactive%20planet%20interface%20with%20animated%20solar%20system%20background%20and%20planet%20information%20cards)
+![Solar System Explorer - Main View](./images/project-outcome.png)
 
-*Interactive Solar System Explorer showcasing planet information with beautiful animations and responsive design*
+![Solar System Explorer - Planet Detail View](./images/project-outcome-01.png)
+
 
 ## 🚀 Features
 
