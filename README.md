@@ -49,60 +49,58 @@ A full-stack web application that provides an interactive exploration of our sol
 ### Local Development
 
 1. **Clone the repository**
-   \`
+   ```bash
    git clone <repository-url>
    cd solar-system
-   `\
+   
 
 2. **Install dependencies**
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
 
 3. **Set up environment variables**
    Create a \`.env\` file in the root directory:
-   \`\`\`env
+   ```env
    MONGO_URI=mongodb://localhost:27017/superData
    MONGO_USERNAME=your-username
    MONGO_PASSWORD=your-password
    NODE_ENV=development
-   \`\`\`
+   
 
 4. **Start the application**
-   \`\`\`bash
+   ```bash
    npm start
-   \`\`\`
+   ```
 
    The application will be available at \`http://localhost:3000\`
 
 ### Docker Setup
 
 1. **Build the Docker image**
-   \`\`\`bash
+   ```bash
    docker build -t solar-system:latest .
-   \`\`\`
 
 2. **Run the container**
-   \`\`\`bash
+   ```bash
    docker run -d \
      -p 3000:3000 \
      -e MONGO_URI=your-mongo-uri \
      -e MONGO_USERNAME=your-username \
      -e MONGO_PASSWORD=your-password \
      solar-system:latest
-   \`\`\`
+   
 
 ## 🧪 Testing
 
 ### Run Unit Tests
-\`\`\`bash
+```bash
 npm test
-\`\`\`
+```
 
 ### Run Tests with Coverage
-\`\`\`bash
+```bash
 npm run coverage
-\`\`\`
+```
 
 ### Test Endpoints
 - **Health Check**: \`GET /live\` - Returns \`{"status": "live"}\`
@@ -112,7 +110,7 @@ npm run coverage
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 solar-system/
 ├── app.js                  # Express application setup
 ├── app-controller.js       # Client-side JavaScript
@@ -129,7 +127,7 @@ solar-system/
 │   ├── development/       # Dev environment K8s manifests
 │   └── production/        # Prod environment K8s manifests
 └── images/               # Static assets
-\`\`\`
+```
 
 ## 🚀 CI/CD Pipeline
 
@@ -150,17 +148,17 @@ The project includes a comprehensive GitHub Actions pipeline that:
 ## 🌐 API Documentation
 
 ### Get Planet Information
-\`\`\`http
+```http
 POST /planet
 Content-Type: application/json
 
 {
   "id": 3
 }
-\`\`\`
+```
 
 **Response:**
-\`\`\`json
+```json
 {
   "id": 3,
   "name": "Earth",
@@ -169,27 +167,27 @@ Content-Type: application/json
   "velocity": "29.78 km/s",
   "distance": "149.6 million km"
 }
-\`\`\`
+```
 
 ## 🐳 Kubernetes Deployment
 
 ### Deploy to Development
-\`\`\`bash
+```bash
 kubectl apply -f kubernetes/development/
-\`\`\`
+```
 
 ### Deploy to Production
-\`\`\`bash
+```bash
 kubectl apply -f kubernetes/production/
-\`\`\`
+```
 
 ### Required Secrets
-\`\`\`bash
+```bash
 kubectl create secret generic mongo-db-creds \
   --from-literal=MONGO_URI=your-uri \
   --from-literal=MONGO_USERNAME=your-username \
   --from-literal=MONGO_PASSWORD=your-password
-\`\`\`
+```
 
 ## 🔒 Security
 
@@ -205,10 +203,6 @@ kubectl create secret generic mongo-db-creds \
 3. Commit your changes (\`git commit -m 'Add amazing feature'\`)
 4. Push to the branch (\`git push origin feature/amazing-feature\`)
 5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 👥 Contact
 
