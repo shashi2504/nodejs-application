@@ -12,7 +12,7 @@ A full-stack web application that provides an interactive exploration of our sol
 
 ![Solar System Explorer - Main View](./images/project-outcome.png)
 
-![Solar System Explorer - Planet Detail View](./images/project-outcome-01.png)
+![Solar System Explorer - Planet Detail View](./images/project-output-01.png)
 
 
 ## 🚀 Features
