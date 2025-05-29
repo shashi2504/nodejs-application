@@ -7,7 +7,12 @@ A full-stack web application that provides an interactive exploration of our sol
 ![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestrated-blue)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-black)
-[![NodeJs Application Workflow](https://github.com/shashi2504/nodejs-application/actions/workflows/solar-system.yml/badge.svg)](https://github.com/shashi2504/nodejs-application/actions/workflows/solar-system.yml)
+
+## 📸 Project Outcome
+
+![Solar System Explorer Screenshot](/placeholder.svg?height=600&width=1200&query=Solar%20System%20Explorer%20web%20application%20showing%20interactive%20planet%20interface%20with%20animated%20solar%20system%20background%20and%20planet%20information%20cards)
+
+*Interactive Solar System Explorer showcasing planet information with beautiful animations and responsive design*
 
 ## 🚀 Features
 
